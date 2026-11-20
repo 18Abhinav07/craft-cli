@@ -6,9 +6,21 @@ Changelog
 See the `Releases page`_ on GitHub for a complete list of commits that are
 included in each version.
 
-.. _release-3.4.2:
+.. _release-3.6.0:
 
-3.4.2 (unreleased)
+3.6.0 (unreleased)
+------------------
+
+New features:
+
+- If a command doesn't define the ``overview`` attribute, its class docstring
+  is now used as the overview.
+- If a command doesn't define the ``help_msg`` attribute, the first paragraph
+  of its class docstring is now used as the help message.
+
+.. _release-3.5.0:
+
+3.5.0 (2026-11-18)
 ------------------
 
 New features:
@@ -22,6 +34,9 @@ New features:
   that a :py:class:`~craft_cli.errors.CraftError` is raised while matching on
   its ``details``, ``resolution``, ``docs_url`` and ``retcode`` fields, which
   ``pytest.raises``' ``match`` parameter cannot reach.
+- Add an ``allow_abbrev`` parameter to :py:class:`~craft_cli.dispatcher.Dispatcher`.
+  Set it to ``False`` to require command options to be written in full instead
+  of accepting abbreviations, such as ``--dest`` for ``--destination``.
 
 Bug fixes:
 
@@ -29,6 +44,10 @@ Bug fixes:
   matching the behavior of the real progress bar.
 - The ``emitter`` test plugin now reports a clear, actionable error message
   when pytest is not installed, instead of a bare ``ModuleNotFoundError``.
+- Strip stray carriage returns when outputting to a file rather than a TTY.
+- Handle permanent progress messages with multi-line content.
+- Ignore broken pipes on output streams.
+- Reset terminal styling after ``Emitter.open_stream``.
 
 .. _release-3.4.1:
 
